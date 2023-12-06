@@ -1,0 +1,56 @@
+Q1:
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES ('Ian Jr', 'Ian Jr', '123 Ke', 'Anytown', '00100', 'Kenya');
+
+UPDATE Customers
+SET Address = '456 Ke'
+WHERE CustomerName = 'Iano Jr';
+
+Q2:
+INSERT INTO Orders 
+(CustomerID, EmployeeID, ShipperID, OrderDate)
+VALUES
+((SELECT CustomerID FROM Customers WHERE CustomerName = 'Iano Jr'),
+  (SELECT EmployeeID FROM Employees WHERE LastName = 'Davolio'), 
+  (SELECT ShipperID FROM Shippers WHERE ShipperName = 'United Package'),
+  '2023-02-01');
+
+SELECT *
+FROM Orders
+WHERE CustomerID = (SELECT CustomerID FROM Customers WHERE CustomerName = 'Iano Jr');
+
+Q3:
+INSERT INTO Products (Product_Name, Product_Description, Product_Price, Product_CategoryID, Product_SupplierID)
+VALUES ('New Product', 'This is a new product.', 99.99, 1, 1);
+
+Q4:
+INSERT INTO OrderDetails (OrderDetailID, OrderID, ProductID, Quantity)
+VALUES (1001, 2, 3, 1);
+
+Q5:
+DELETE FROM Customers
+WHERE CustomerID = 56;
+
+Q6:
+SELECT * FROM Customers
+WHERE Country IN ('Brazil', 'Italy');
+
+Q7:
+INSERT INTO OrderDetails (OrderDetailID, OrderID, ProductID, Quantity)
+VALUES (1001, 2, 3, 1);
+
+Q8:
+SELECT *
+FROM Orders
+WHERE OrderDate BETWEEN '1996-10-01' AND '1996-10-31'
+ORDER BY OrderDate ASC;
+
+Q9:
+SELECT ShipVia, COUNT(*) AS TotalOrders
+FROM Orders
+GROUP BY ShipVia;
+
+Q10:
+SELECT *
+FROM Products
+WHERE Product_Price > 25;
